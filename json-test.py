@@ -1,12 +1,41 @@
+# from (Origin Class)                           to (Json String)
+# {                                             {
+#    "res_type":"tiub",                             "res_type":"tiub",
+#    "dialogNode":"root",                           "message":{
+#    "dialogRequestCounter":"1",                        "text":"This is dummy text value",
+#    "text":"This is dummy text value",                 "photo":{
+#    "photo_url":"https://photo.src",                       "url":"https://photo.src",
+#    "width":"640",                                         "width":"640",
+#    "height":"480",                                        "height":"480"
+#    "label":"주유 쿠폰받기",                           },
+#    "url":"https://coupon/url",                        "message_button":{
+#    "type":"buttons",                                      "label":"주유 쿠폰받기",
+#    "buttons":[                                            "url":"https://coupon/url"
+#        "처음으로",                                    }
+#        "다시 등록하기",                           },
+#        "취소하기"                                 "keyboard":{
+#    ]                                                  "type":"buttons",
+# }                                                     "buttons":[
+#                                                           "처음으로",
+#                                                           "다시 등록하기",
+#                                                           "취소하기"
+#                                                       ]
+#                                                   },
+#                                                   "dialog":{
+#                                                       "dialogNode":"root",
+#                                                       "dialogRequestCounter":"1"
+#                                                   }
+#                                               }
+
+
 import random
 import json
 
-typeList = ['t', 'ti', 'tu', 'tiu', 'tb', 'tib', 'tiub']
-
 class DummyResult:
+    typeList = ['t', 'ti', 'tu', 'tiu', 'tb', 'tib', 'tiub']
     def __init__(self):
         # res_type
-        self.res_type = random.choice(typeList)
+        self.res_type = random.choice(self.typeList)
 
         # dialog
         self.dialogNode = "root"
@@ -64,11 +93,8 @@ class DummyResult:
 
         return str(strResult)
 
-
-
-
-
 def responseJsonBuild(resultSet):
+    print(resultSet)
     dicResultResponse = {}
 
     # res_type
@@ -113,10 +139,7 @@ def responseJsonBuild(resultSet):
 
     return dicResultResponse
 
-# print("result = ", type(answerBuild()), answerBuild())
-# print("result to json = ", type(json.dumps(answerBuild())), json.dumps(answerBuild()))
-
-for i in range(1, 11) :
+for i in range(0, 10) :
     result = DummyResult()
     # print(type(responseJsonBuild(result)))
     print(responseJsonBuild(result))
